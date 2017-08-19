@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Fuzzy Logic</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<script src="./presentation.js"></script>
+<script src="./raphael-min.js"></script>
+<body onLoad="presentation();">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+			</div>
+			<div class="col-md-7">      
+				<h1>Input Variables:</h1>
+				<div id="variables_input"></div>
+				<hr>
+				<h1>Output Variables:</h1>
+				<div id="variable_output"></div>
+				<hr>
+				<h1>Inferences:</h1>
+				<div id="inferences"></div>
+				<hr>
+				<h1>Input:</h1>
+				<div id="input"></div>
+				<hr>
+				<button class="btn btn-default" type="button" value="Calculate" onClick="document.getElementById('result').innerHTML='Result: '+fl.getResult(obj);">Calculate</button>
+
+				<span id="result"></span>
+				<div id="draw_result"></div>
+			</div> 
+			<div class="col-md-2">
+			</div> 
+		</div>
+	</div>
+</div>
+<p><br/></p>
+<div class="container">
+	<footer>
+		<p>&copy; 2016 JS-Fuzzy - github.com/marcolanaro/JS-Fuzzy. Implementation by Mike Camara for ICT319</p>
+	</footer>
+</div> <!-- /container -->
+<script src="fuzzy-min.js"></script>
+<script>
+var obj = {
+	crisp_input: [0.3, 0.8, 0.7],
+	variables_input: [
+	{
+		name: "Meal time",
+		setsName: ["Breakfast time", "Lunch time", "Dinner time"],
+		sets: [
+		[0,0,0.2,0.3],
+		[0.2,0.3,0.4,0.5],
+		[0.4,0.5,0.6,0.7]
+		]
+	},
+	{
+		name: "Weather type",
+		setsName: ["Freezing", "Cold", "Warm", "Hot", "Melting"],
+		sets: [
+		[0,0.1,0.2,0.4],
+		[0.25,0.40,0.5,0.7],
+		[0.55,0.6,0.65,0.75],
+		[0.60,0.7,0.8,1],
+		[0.7,0.8,0.9,1]
+		]
+	},
+	{
+		name: "Season",
+		setsName: ["Autumn", "Winter", "Spring", "Summer"],
+		sets: [
+		[0,0,0.3,0.4],
+		[0.2,0.3,0.4,0.5],
+		[0.3,0.4,0.5,0.6],
+		[0.5, 0.6, 0.7,1]
+		]
+	}
+	],
+	variable_output: {
+		name: "Desirability",
+		setsName: ["Undesirable", "Desirable", "Very Desirable"],
+		sets: [
+		[0,0,25,50],
+		[25,50,50,75],
+		[50,75,100,100]
+		]
+	},
+	inferences: [
+	[0,2,0],
+	[0,1,2],
+	[2,1,0]
+	]
+};
+var fl = new FuzzyLogic();
+
+</script>
+</body>
+</html>
